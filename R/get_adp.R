@@ -15,7 +15,7 @@
 
 get_adp = function(adp_type, name=NULL, code=NULL){
 
-  codes = readRDS(paste0("data/", adp_type, ".RDS"))
+  load(file = paste0("data/", adp_type, ".rda"))
   obj = sf::st_sf(sf::st_sfc(), crs = 2180)
 
   if (is.null(code)==FALSE){
@@ -29,7 +29,7 @@ get_adp = function(adp_type, name=NULL, code=NULL){
     }
   }else if (is.null(name)==FALSE){
     for (i in seq_along(name)) {
-      code = as.character((subset(codes, nazwa==name[i])[,2]))
+      code = as.character((subset(adptype, nazwa==name[i])[,2]))
       download.file(sprintf("https://github.com/skowronskij/prgdata/blob/master/%s/%s.rds?raw=true",
                             adp_type, code), destfile = paste0(tempdir(), "/", code, ".rds"))
 
@@ -38,8 +38,8 @@ get_adp = function(adp_type, name=NULL, code=NULL){
       obj = rbind(obj, iterationObj)
     }
   }else {
-    for (i in seq_len(nrow(codes))){
-      code = as.character(codes[i,2])
+    for (i in seq_len(nrow(adptype))){
+      code = as.character(adptype[i,2])
       download.file(sprintf("https://github.com/skowronskij/prgdata/blob/master/%s/%s.rds?raw=true",
                             adp_type, code), destfile = paste0(tempdir(), "/", code, ".rds"))
 

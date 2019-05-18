@@ -3,8 +3,7 @@
 #' @param path path for downloading and unziping files
 #'
 #' @description Function for downloading and renaming adp data
-#'
-#'
+
 adp_download = function(path) {
 
   dir.create(paste0(path, "/prg"))
