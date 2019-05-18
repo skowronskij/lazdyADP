@@ -6,10 +6,8 @@ update = function(path){
   download(path)
   files = list.files(path = paste0(path, "/prg"), pattern = ".shp$")
   for (filex in files){
-    if (filex == "powiaty.shp") {
-      cat("\nSlicing", filex)
-      slicer(path = path, file = filex)
-    }
+    cat("\nSlicing", filex)
+    slicer(path = path, file = filex)
   }
 }
 update(path = args[1])
