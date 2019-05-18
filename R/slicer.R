@@ -7,23 +7,23 @@
 #'
 
 
-adp_slicer = function(file){
+adp_slicer = function(path, file){
   # Loading files
-  sf = sf::read_sf(file, options = "ENCODING=UTF-8")
+  filePath = paste0(path, "/prg/", file)
+  sf = sf::read_sf(filePath, options = "ENCODING=UTF-8")
   sf = sf::st_transform(sf, crs=2180)
 
   # Creating dir
-  dataFile = "data"
+
+  dataFile = paste0(path, "/prgdata")
   if (dir.exists(dataFile)==FALSE){
-    dir.create("data")
+    dir.create(paste0(path, "/prgdata"))
     }
   woExt = gsub(".shp$", "", file)
-  woExt = gsub("prg/", "", woExt)
-  dir.create(paste0("data/", woExt))
+  dir.create(paste0(path, "/prgdata/", woExt))
 
   for (fid in seq_len(nrow(sf))){
     sfRow = sf[fid,]
-    saveRDS(sfRow, paste0(sprintf("data/%s/",woExt), sfRow$JPT_KOD_JE, ".rds"), compress = "bzip2")
+    saveRDS(sfRow, paste0(paste0(path, "/prgdata/", woExt, "/"), sfRow$JPT_KOD_JE, ".rds"), compress = "bzip2")
   }
 }
-

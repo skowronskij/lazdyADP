@@ -3,14 +3,20 @@
 #' @description Function for downloading and renaming adp data
 #'
 #'
-adp_download = function() {
-  dir.create("prg")
-  download.file("ftp://91.223.135.109/prg/jednostki_administracyjne.zip",
-               destfile = "jednostki_administracyjne.zip")
-  unzip("jednostki_administracyjne.zip", exdir = "prg")
+adp_download = function(path) {
 
-  prg = "prg/"
-  files = list.files(path = prg)
+  dir.create(paste0(path, "/prg"))
+  #download.file("ftp://91.223.135.109/prg/jednostki_administracyjne.zip",
+   #           destfile = paste0(path, "/jednostki_administracyjne.zip"))
+  cat("\nPobrano pomyślnie \n")
+
+  cat("Rozpakowywanie...")
+  unzip(paste0(path, "/jednostki_administracyjne.zip"), exdir = paste0(path, "/prg/"))
+  cat("Rozpakowano pomyślnie")
+
+  pathh = paste0(path, "/prg/")
+  cat("Zmiana nazw...")
+  files = list.files(pathh)
   for (fname in files) {
     print(Encoding(fname))
     if (Encoding(fname)!="UTF-8"){
@@ -20,18 +26,19 @@ adp_download = function() {
       newName = tolower(fname)
       print("encoding utf8")
     }
-    file.rename(paste0(prg, fname), paste0(prg, newName))
+    file.rename(paste0(pathh, fname), paste0(pathh, newName))
     if (stringr::str_detect(newName, pattern = "stwo")){
       print(newName)
-      file.rename(paste0(prg, newName), paste0(prg, "panstwo.", tools::file_ext(newName)))
+      file.rename(paste0(pathh, newName), paste0(pathh, "panstwo.", tools::file_ext(newName)))
     }
     if (stringr::str_detect(newName, pattern = "obr")){
       print(newName)
-      file.rename(paste0(prg, newName), paste0(prg, "obreby_ewidencyjne.", tools::file_ext(newName)))
+      file.rename(paste0(pathh, newName), paste0(pathh, "obreby_ewidencyjne.", tools::file_ext(newName)))
     }
     if (stringr::str_detect(newName, pattern = "wojew")){
       print(newName)
-      file.rename(paste0(prg, newName), paste0(prg, "wojewodztwa.", tools::file_ext(newName)))
+      file.rename(paste0(pathh, newName), paste0(pathh, "wojewodztwa.", tools::file_ext(newName)))
     }
   }
+  cat("Zmieniono nazwy!")
 }
