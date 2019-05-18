@@ -33,7 +33,9 @@ This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
 library(lazyADP)
-## basic example code
+wlkp = get_adp("wojewodztwa", name = "wielkopolskie")
+silesia = get_adp("wojewodztwa", code = "02")
+wlkp_maz = get_adp("wojewodztwa", name = c("wielkopolskie", "mazowieckie"))
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
