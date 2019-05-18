@@ -7,7 +7,7 @@ update = function(path){
   files = list.files(path = paste0(path, "/prg"), pattern = ".shp$")
   for (filex in files){
     if (filex == "wojewodztwa.shp") {
-      cat("/nSlicing", filex)
+      cat("\nSlicing", filex)
       slicer(path = path, file = filex)
     }
   }
