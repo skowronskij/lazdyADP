@@ -4,10 +4,12 @@
 \alias{adp_slicer}
 \title{Slicer}
 \usage{
-adp_slicer(file)
+adp_slicer(path, file)
 }
 \arguments{
-\item{file}{Shapefile to slice}
+\item{path}{Path to files}
+
+\item{file}{Shapefile name}
 }
 \description{
 Slices sf object of subdivision to the smallest

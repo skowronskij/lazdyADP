@@ -4,7 +4,10 @@
 \alias{adp_download}
 \title{Download adp and change name of files}
 \usage{
-adp_download()
+adp_download(path)
+}
+\arguments{
+\item{path}{path for downloading and unziping files}
 }
 \description{
 Function for downloading and renaming adp data

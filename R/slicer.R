@@ -3,7 +3,8 @@
 #' @description Slices sf object of subdivision to the smallest
 #' possible elements by adp code
 #'
-#' @param file Shapefile to slice
+#' @param path Path to files
+#' @param file Shapefile name
 #'
 
 

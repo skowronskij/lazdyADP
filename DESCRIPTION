@@ -1,6 +1,6 @@
 Package: lazyADP
 Title: Easy Administrative divisions of Poland downloading
-Version: 0.0.1
+Version: 0.1.0
 Authors@R: 
     person(given = "Jakub",
            family = "Skowroński",
