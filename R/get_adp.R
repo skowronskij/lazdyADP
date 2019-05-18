@@ -29,7 +29,7 @@ get_adp = function(adp_type, name=NULL, code=NULL){
     }
   }else if (is.null(name)==FALSE){
     for (i in seq_along(name)) {
-      code = (subset(codes, nazwa==name[i])[,3])
+      code = as.character((subset(codes, nazwa==name[i])[,2]))
       download.file(sprintf("https://github.com/skowronskij/prgdata/blob/master/%s/%s.rds?raw=true",
                             adp_type, code), destfile = paste0(tempdir(), "/", code, ".rds"))
 
@@ -39,7 +39,7 @@ get_adp = function(adp_type, name=NULL, code=NULL){
     }
   }else {
     for (i in seq_len(nrow(codes))){
-      code = codes[i,3]
+      code = as.character(codes[i,2])
       download.file(sprintf("https://github.com/skowronskij/prgdata/blob/master/%s/%s.rds?raw=true",
                             adp_type, code), destfile = paste0(tempdir(), "/", code, ".rds"))
 
