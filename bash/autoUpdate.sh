@@ -7,6 +7,11 @@ if [ ! -d ~/Dokumenty/prgdata/ ]; then
 	git clone git@github.com:skowronskij/prgdata.git	
 fi
 
+cd ~/Dokumenty/prgdata/
+git rm . -r -f
+git commit . -m "Aktualizacja"
+git push
+
 cd ~/Dokumenty/lazyADP/R/
 Rscript update.R "~/Dokumenty"
 
